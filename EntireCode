@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#Script Usado para sincronizar arquivo de um servidor remoto com o servidor local
+
+USERREMOTO=USER
+SENHA=Senha_para_o_Servidor_remoto
+IPSERVIDOR=XXX.XXX.XXX.XXX
+LOGPATH=caminho_do_LOG
+PATHREMOTO=/backups/*
+PATHLOCAL=/backups
+
+
+
+echo -e "\n Realizando Espelhamento" >> $LOGPATH
+date >> $LOGPATH
+echo -e "\n" >> $LOGPATH
+
+
+sshpass -p $SENHA rsync -avh -e ssh $USERREMOTO@$IPSERVIDOR:$PATHREMOTO $PATHLOCAL
+
+
+echo "Fim do Espelhamento" >> $LOGPATH
+date >> $LOGPATH
